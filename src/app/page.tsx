@@ -1,8 +1,12 @@
+import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
-const Home = () => {
+const Home = async () => {
+  const session = await auth();
+  
+  
   return (
     <main className="w-full py-24 pb-8">
       <div className="container flex-1 flex flex-col items-center text-center space-y-4 py-16">
@@ -17,11 +21,13 @@ const Home = () => {
             </p>
           
         </div>
-        <Link href="/login">
-          <Button size={"lg"}  variant={"default"} className="cursor-pointer w-full max-w-48">Get Started</Button>
-        </Link>
+        {!session && (
+          <Link href="/login">
+            <Button size={"lg"}  variant={"default"} className="cursor-pointer w-full max-w-48">Get Started</Button>
+          </Link>
+        )}
       </div>
-      <div>
+      <div className="container max-w-5xl">
         {/* TODO: Create component TextBox */}
         {/* <TextBox></TextBox> */}
       </div>
