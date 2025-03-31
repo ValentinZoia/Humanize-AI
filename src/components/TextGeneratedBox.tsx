@@ -1,8 +1,7 @@
 import React from 'react'
 import {Button} from './ui/button'
 import {CopyIcon} from 'lucide-react'
-import {toast} from 'sonner'
-import {copyClipboard} from '@/lib/utils'
+import { handleCopy} from '@/lib/utils'
 
 interface Props {
     humanizedText:string;                         
@@ -11,14 +10,7 @@ interface Props {
 
 
 const TextGeneratedBox = ({humanizedText,textRef}:Props) => {
-  const handleCopy = (text:string) => {
-    copyClipboard(text);
-    toast.success("Copied to clipboard", {
-        description: "The text has been copied to the clipboard.",
-        
-    });
-
-  }
+  
   
   
     return (
