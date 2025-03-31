@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import TextBox from "@/components/TextBox";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
@@ -28,8 +29,8 @@ const Home = async () => {
         )}
       </div>
       <div className="container max-w-5xl">
-        {/* TODO: Create component TextBox */}
-        {/* <TextBox></TextBox> */}
+        
+        <TextBox />
       </div>
     </main>
   );
