@@ -3,6 +3,9 @@ import Credentials from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
 import prisma from "./lib/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { loginSchema } from "./lib/zodSchema";
+import { getUserByEmail, validateUserPassword } from "./actions/user";
+
 
 export const authOptions ={
 providers:[
@@ -24,45 +27,32 @@ providers:[
           },
         },
         async authorize(credentials) {
-          // Validación de campos usando Zod
-        //   const validateFields = LogInFormSchema.safeParse(credentials);
+          try {
+            const validateFields = loginSchema.safeParse(credentials);
   
-        //   if (!validateFields.success) {
-        //     throw new Error("Por favor, ingresa tu correo y contraseña.");
-        //   }
+          if (!validateFields.success) {
+            throw new Error("Por favor, ingresa tu correo y contraseña.");
+          }
   
-        //   const { email, password } = validateFields.data;
+          const { email, password } = validateFields.data;
   
-          // Buscar usuario en la base de datos
-        //   const user = await prisma.user.findUnique({
-        //     where: { email },
-        //   });
+         
+          const user = await getUserByEmail(email);
   
-        //   if (!user) {
-        //     throw new Error("Email o contraseña incorrectos.");
-        //   }
+          if (!user) {
+            throw new Error("Email o contraseña incorrectos.");
+          }
   
-          // Si el usuario se registró con OAuth, no permitir login con password
-        //   if(!user.password){
-        //     return null;
-        //   }
           
-          // Verificar contraseña
-        //   const isPasswordCorrect = await bcrypt.compare(
-        //     password,
-        //     user.password as string
-        //   );
-  
-        //   if (!isPasswordCorrect) {
-        //     throw new Error("La contraseña no es correcta.");
-        //   }
-  
-          // Retornar datos básicos del usuario
-        //   return {
-        //     id: user.id,
-        //     name: user.name,
-        //     email: user.email,
-        //   };
+         await validateUserPassword(user, password);
+          return user;
+          
+          } catch (error) {
+            console.error('Authentication error:', error);
+            return null;
+          }
+          
+          
         },
       }),
 ],
