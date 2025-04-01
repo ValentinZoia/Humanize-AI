@@ -18,7 +18,7 @@ const LoginPage = async () => {
   }
 
   return (
-    <div className="container flex-1 flex items-center justify-center">
+    <div className="container flex-1 flex flex-col items-center text-center space-y-4 py-36">
       <Card className="w-full max-w-md" >
         <CardHeader>
           <CardTitle>Welcome</CardTitle>
@@ -27,8 +27,8 @@ const LoginPage = async () => {
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Sign In</TabsTrigger>
-              <TabsTrigger value="register">Sign Up</TabsTrigger>
+              <TabsTrigger value="login" className="cursor-pointer">Sign In</TabsTrigger>
+              <TabsTrigger value="register" className="cursor-pointer">Sign Up</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
               <LoginForm />

@@ -54,7 +54,7 @@ const LoginForm = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="space-y-2">
+            <FormItem className="space-y-2 pb-4">
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="Email" {...field} />
@@ -67,7 +67,7 @@ const LoginForm = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="space-y-2 pb-4">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input type="password" placeholder="Password" {...field} />

@@ -11,7 +11,7 @@ interface Props {
 
 const SubmitBtn = ({name, isLoading}:Props) => {
   return (
-    <Button disabled={isLoading} className={cn("w-full", isLoading && "opacity-50 cursor-not-allowed")} type="submit">
+    <Button disabled={isLoading} className={cn("w-full cursor-pointer", isLoading && "opacity-50 cursor-not-allowed")} type="submit">
       {isLoading ? <LoaderCircle className="h-4 w-4 animate-spin" /> : name}
     </Button>
   )
