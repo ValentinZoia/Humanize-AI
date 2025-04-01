@@ -5,7 +5,7 @@
  */
 export const publicRoutes = [
     {
-        path: "",
+        path: "/profile",
         name: "",
         component: "",
     },
@@ -25,11 +25,7 @@ export const authRoutes =[
         name: "Login",
         component: "Login",
     },
-    {
-        path: "/register",
-        name: "Register",
-        component: "Register",
-    },
+    
     
 ];
 
