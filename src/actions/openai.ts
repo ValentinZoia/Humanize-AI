@@ -5,7 +5,9 @@ import OpenAI from "openai";
 import { setHumanizedText } from "./user";
 
  // Initialize OpenAI client
-const openai = new OpenAI();
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export const humanizeText = async (text:string): Promise<string | null> => {
     const session = await auth();
